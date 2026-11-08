@@ -1,0 +1,14 @@
+description: First Eval
+
+prompts:
+  - "Provide the capital of {{country}} in one word"
+
+providers:
+  - ollama:chat:qwen2.5:7b
+
+tests:
+  - vars:
+      country: Argentina
+    assert:
+      - type: icontains-any
+        value: ["Buenos Aires", "Capital Federal"]
