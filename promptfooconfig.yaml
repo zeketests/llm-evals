@@ -12,3 +12,21 @@ tests:
     assert:
       - type: icontains-any
         value: ["Buenos Aires", "Capital Federal"]
+
+  - vars:
+      country: France
+    assert:
+      - type: icontains-any
+        value: ["Paris", "París"]      
+
+  - vars:
+      country: Japan
+    assert:
+      - type: icontains-any
+        value: ["Tokyo", "Tōkyō"]        
+  - vars:
+      country: Korea
+    assert:
+      - type: icontains-any
+        value: ["Seoul"]     
+

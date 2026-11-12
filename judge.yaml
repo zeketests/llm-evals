@@ -1,0 +1,30 @@
+description: LLM as a judge
+
+prompts:
+  - "You are a customer support agent for a bank. You speak as the bank. Use 'our app', 'call us'. 'we can help'. Answer the customer: {{question}}"
+
+providers:
+  - ollama:chat:qwen2.5:7b
+
+defaultTest:
+  options:
+    provider: ollama:chat:qwen2.5:7b
+
+tests:
+  - vars:
+      question: "How do I block my credit card?"
+    assert:
+      - type: llm-rubric
+        value: "The answer speaks as the bank itself (for example 'our app' or 'call us'), not as an outsider telling the customer to contact their bank"  
+
+  - vars:
+      question: "What should I do if someone steals my debit card?"
+    assert:
+      - type: llm-rubric
+        value: "The answer speaks as the bank itself (for example 'our app' or 'call us'), not as an outsider telling the customer to contact their bank"          
+
+  - vars:
+      question: "How can I borrow money from my bank?"
+    assert:
+      - type: llm-rubric
+        value: "The answer speaks as the bank itself (for example 'our app' or 'call us'), not as an outsider telling the customer to contact their bank"                  
