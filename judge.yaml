@@ -1,6 +1,7 @@
 description: LLM as a judge
 
 prompts:
+  - "You are a customer support agent for a bank. Answer the customer: {{question}}"
   - "You are a customer support agent for a bank. You speak as the bank. Use 'our app', 'call us'. 'we can help'. Answer the customer: {{question}}"
 
 providers:
