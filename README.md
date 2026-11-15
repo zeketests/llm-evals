@@ -35,6 +35,17 @@ The agent answered like an outsider: *"contact your bank"* instead of speaking a
 
 After that, the system prompt was made explicit ("You speak as the bank. Use 'our app', 'call us', 'we can help'") to fix the behavior, and the rubric acts as a regression check.
 
+### Validating the rubric (before vs. after)
+
+`judge.yaml` runs two prompts side by side against the same rubric:
+
+| Prompt | Result |
+|--------|--------|
+| Baseline: "You are a customer support agent for a bank. Answer the customer..." | 0/3 passed |
+| Fixed: adds "You speak as the bank. Use 'our app', 'call us'..." | 3/3 passed |
+
+The rubric fails when the bug is present and passes once it's fixed, so it's a trustworthy check. Keeping both prompts in the config documents the before/after and makes regressions visible in `promptfoo view`.
+
 ## Key QA concepts applied
 
 - **Non-deterministic testing**: LLMs don't always answer with the same text, so assertions validate meaning instead of exact matches.
